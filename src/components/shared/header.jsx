@@ -58,15 +58,17 @@ export default function Header({
             setCities={setCities}
           />
           <div
-            className="relative w-12 h-6 shrink-0 rounded-full border border-slate-200 dark:border-slate-700 bg-white/70 dark:bg-slate-800/70 cursor-pointer"
+            className="relative w-14 h-7 shrink-0 rounded-full border border-slate-200 dark:border-slate-700 bg-white/70 dark:bg-slate-800/70 cursor-pointer flex items-center"
             role="switch"
             aria-checked={darkMode}
             aria-label="Toggle dark mode"
             onClick={() => setDarkMode(!darkMode)}
           >
+            <span className="pl-2 text-xs">☀️</span>
+            <span className="ml-auto pr-2 text-xs">🌙</span>
             <div
-              className={`absolute top-1 left-1 w-4 h-4 rounded-full bg-slate-700 dark:bg-slate-200 transition-transform ${
-                darkMode ? "translate-x-6" : "translate-x-0"
+              className={`absolute top-1 left-1 w-5 h-5 rounded-full bg-slate-700 dark:bg-slate-200 transition-transform ${
+                darkMode ? "translate-x-7" : "translate-x-0"
               }`}
             />
           </div>

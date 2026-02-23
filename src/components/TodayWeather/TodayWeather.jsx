@@ -48,7 +48,7 @@ export default function TodayWeather({
               Humidity
             </p>
             <p className="text-xl font-black text-slate-900 dark:text-slate-100">
-              {weather?.today?.humidity}
+              💧 {weather?.today?.humidity}
             </p>
           </div>
           <div className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white/70 dark:bg-slate-800/70 p-4">
@@ -56,7 +56,7 @@ export default function TodayWeather({
               Wind
             </p>
             <p className="text-xl font-black text-slate-900 dark:text-slate-100">
-              {weather?.today?.wind}
+              💨 {weather?.today?.wind}
             </p>
           </div>
           <div className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white/70 dark:bg-slate-800/70 p-4">
@@ -64,7 +64,7 @@ export default function TodayWeather({
               Pressure
             </p>
             <p className="text-xl font-black text-slate-900 dark:text-slate-100">
-              {weather?.today?.pressure}
+              📈 {weather?.today?.pressure}
             </p>
           </div>
         </div>
