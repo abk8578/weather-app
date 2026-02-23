@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { decodeWeather } from "../../utils/weatherCodes";
 import AboutPage from "../aboutUs/aboutUs";
 import Hero from "../hero/hero";
@@ -10,6 +10,7 @@ import Footer from "../shared/footer";
 import Header from "../shared/header";
 import Tabs from "../Tabs/Tabs";
 import TodayWeather from "../TodayWeather/TodayWeather";
+import WeatherAlerts from "../WeatherAlerts/WeatherAlerts";
 import WeeklyForecast from "../WeeklyForecast/WeeklyForecast";
 
 /* ✅ UPDATED SKY / MOUNTAIN BACKGROUNDS ONLY */
@@ -51,7 +52,7 @@ export default function WeatherApp() {
     region: "Delhi, India",
   });
   const [currentTime, setCurrentTime] = useState(new Date());
-  const searchRef = useRef(null);
+
   const [selectedDay, setSelectedDay] = useState(null);
   const [selectedHours, setSelectedHours] = useState(null);
 
@@ -198,6 +199,7 @@ export default function WeatherApp() {
         currentTime={currentTime}
         getBackgroundImage={getBackgroundImage}
       />
+      <WeatherAlerts alerts={alerts} setAlerts={setAlerts} />
       <div className=" bg-gradient-to-b from-transparent to-white/60 dark:to-slate-900/60" />
 
       <main className="w-full flex-1 z-10">
