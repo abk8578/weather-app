@@ -198,10 +198,11 @@ export default function WeatherApp() {
         currentTime={currentTime}
         getBackgroundImage={getBackgroundImage}
       />
+      <div className="h-8 bg-gradient-to-b from-transparent to-white/60 dark:to-slate-900/60" />
 
       <main className="w-full flex-1 z-10">
-        <div className="max-w-screen-2xl mx-auto px-4 py-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-12 2xl:px-16 py-8 lg:py-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 xl:gap-10 items-start">
             <div
               className={`space-y-8 ${
                 activeTab === "today" ? "lg:col-span-8" : "lg:col-span-12"
@@ -245,8 +246,62 @@ export default function WeatherApp() {
           </div>
         </div>
       </main>
-
       <Footer />
+
+      <AnimatePresence>
+        {selectedHours && (
+          <motion.div
+            className="fixed inset-0 z-[200] flex items-center justify-center bg-black/40"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => {
+              setSelectedDay(null);
+              setSelectedHours(null);
+            }}
+          >
+            <motion.div
+              className="max-w-6xl w-[95%] max-h-[80vh] overflow-y-auto bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-6 shadow-2xl"
+              initial={{ scale: 0.95, y: 10, opacity: 0 }}
+              animate={{ scale: 1, y: 0, opacity: 1 }}
+              exit={{ scale: 0.95, y: 10, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between mb-4">
+                <div>
+                  <h3 className="text-xl font-black text-slate-900 dark:text-slate-100">
+                    {selectedDay?.day} Hours
+                  </h3>
+                  <p className="text-sm text-slate-600 dark:text-slate-400">
+                    {selectedDay?.cond}
+                  </p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">
+                    {selectedDay?.date
+                      ? new Date(selectedDay.date).toLocaleDateString()
+                      : ""}
+                  </p>
+                </div>
+                <button
+                  className="px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200"
+                  onClick={() => {
+                    setSelectedDay(null);
+                    setSelectedHours(null);
+                  }}
+                >
+                  Close
+                </button>
+              </div>
+              {Array.isArray(selectedHours) && selectedHours.length > 0 ? (
+                <HourlyForecast hourly={selectedHours} />
+              ) : (
+                <div className="text-sm text-slate-600 dark:text-slate-400">
+                  No hourly data for this day.
+                </div>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

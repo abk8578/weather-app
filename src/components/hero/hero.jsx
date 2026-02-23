@@ -6,14 +6,9 @@ export default function Hero({
 }) {
   return (
     <div className="w-full relative h-[320px] sm:h-[380px] lg:h-[460px] xl:h-[520px] 2xl:h-[600px] overflow-hidden">
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-700"
-        style={{ backgroundImage: `url('${getBackgroundImage()}')` }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/25 to-black/10" />
-      <div className="relative z-10 max-w-7xl mx-auto px-6 h-full flex">
+      <div className="relative z-10 w-full px-4 sm:px-6 lg:px-10 xl:px-12 2xl:px-16 h-full flex">
         <div className="self-center w-full flex justify-center">
-          <div className="backdrop-blur-md bg-white/10 rounded-2xl border border-white/20 shadow-2xl p-6 lg:p-8 text-center">
+          <div className="backdrop-blur-md bg-white/5 dark:bg-slate-800/5 rounded-2xl border border-slate-300 dark:border-slate-700 shadow-2xl p-6 lg:p-8 text-center">
             <div className="text-white/95 font-black text-2xl lg:text-3xl flex items-center justify-center gap-2">
               <span>📍</span>
               <span>{location.name}</span>
