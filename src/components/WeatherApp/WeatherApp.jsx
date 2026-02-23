@@ -198,7 +198,7 @@ export default function WeatherApp() {
         currentTime={currentTime}
         getBackgroundImage={getBackgroundImage}
       />
-      <div className="h-8 bg-gradient-to-b from-transparent to-white/60 dark:to-slate-900/60" />
+      <div className=" bg-gradient-to-b from-transparent to-white/60 dark:to-slate-900/60" />
 
       <main className="w-full flex-1 z-10">
         <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-12 2xl:px-16 py-8 lg:py-12">
