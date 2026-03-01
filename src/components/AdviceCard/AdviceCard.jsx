@@ -78,7 +78,7 @@ export default function AdviceCard({ today, variant = "default" }) {
         <h4
           className={`text-lg font-black ${
             variant === "hero"
-              ? "text-white"
+              ? "text-black"
               : "text-slate-900 dark:text-slate-100"
           }`}
         >
@@ -87,7 +87,7 @@ export default function AdviceCard({ today, variant = "default" }) {
         <p
           className={`text-sm ${
             variant === "hero"
-              ? "text-white/90"
+              ? "text-black/90"
               : "text-slate-600 dark:text-slate-300"
           }`}
         >

@@ -20,11 +20,11 @@ export default function Hero({
             <div className="mb-4">
               <AdviceCard today={weather?.today} variant="hero" />
             </div>
-            <div className="text-white/95 font-black text-2xl lg:text-3xl flex items-center justify-center gap-2">
+            <div className="text-black/95 font-black text-2xl lg:text-3xl flex items-center justify-center gap-2">
               <span>📍</span>
               <span>{location.name}</span>
             </div>
-            <p className="text-white/90">
+            <p className="text-black/90">
               {new Date(currentTime).toLocaleDateString([], {
                 weekday: "long",
                 month: "long",
@@ -32,17 +32,17 @@ export default function Hero({
               })}
             </p>
             <div className="flex items-end justify-center gap-6 mt-4">
-              <span className="text-7xl lg:text-9xl font-black text-white drop-shadow-2xl">
+              <span className="text-7xl lg:text-9xl font-black text-black drop-shadow-2xl">
                 {weather?.today.icon}
               </span>
-              <span className="text-6xl lg:text-7xl font-black tracking-tighter text-white drop-shadow-2xl">
+              <span className="text-6xl lg:text-7xl font-black tracking-tighter text-black drop-shadow-2xl">
                 {weather?.today.temp}°
               </span>
             </div>
-            <p className="mt-2 text-white/90 text-lg font-semibold">
+            <p className="mt-2 text-black/60 text-lg font-semibold">
               {weather?.today?.desc}
             </p>
-            <div className="mt-3 grid grid-cols-2 gap-4 text-white/90">
+            <div className="mt-3 grid grid-cols-2 gap-4 text-black/90">
               <div>
                 H: {weather?.today?.high}° • L: {weather?.today?.low}°
               </div>
