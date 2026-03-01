@@ -32,7 +32,7 @@ export default function Highlights({ today }) {
 
   return (
     <div>
-      <h3 className="text-2xl font-black mb-6">Today's Highlights</h3>
+      <h3 className="text-2xl font-black mb-6 mt-4">Today's Highlights</h3>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {highlights.map((h, i) => (
           <div
