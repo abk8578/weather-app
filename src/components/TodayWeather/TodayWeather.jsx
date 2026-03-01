@@ -7,13 +7,13 @@ export default function TodayWeather({
 }) {
   return (
     <motion.div
-      className="bg-white dark:bg-slate-800 rounded-3xl p-8 lg:p-12 shadow-xl border border-slate-200 dark:border-slate-700 relative overflow-hidden"
+      className="rounded-3xl p-6 lg:p-8 shadow-xl border border-slate-200 dark:border-slate-700 relative overflow-hidden bg-white/70 dark:bg-slate-800/70 backdrop-blur-md"
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
     >
       <div
-        className="absolute inset-0 opacity-20"
+        className="absolute inset-0 opacity-10"
         style={{
           backgroundImage: `url('${getBackgroundImage()}')`,
           backgroundSize: "cover",

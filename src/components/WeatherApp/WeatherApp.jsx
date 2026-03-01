@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { BackGroundImage } from "../../_assets";
 import { decodeWeather } from "../../utils/weatherCodes";
 import AboutPage from "../aboutUs/aboutUs";
 import Hero from "../hero/hero";
@@ -14,27 +15,15 @@ import WeatherAlerts from "../WeatherAlerts/WeatherAlerts";
 import WeeklyForecast from "../WeeklyForecast/WeeklyForecast";
 
 /* ✅ UPDATED SKY / MOUNTAIN BACKGROUNDS ONLY */
+const ASSETS_BG = BackGroundImage;
 const weatherBackgrounds = {
-  clear:
-    "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1920&q=80",
-
-  cloudy:
-    "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?auto=format&fit=crop&w=1920&q=80",
-
-  rainy:
-    "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1920&q=80",
-
-  snowy:
-    "https://images.unsplash.com/photo-1482192505345-5655af888cc4?auto=format&fit=crop&w=1920&q=80",
-
-  thunderstorm:
-    "https://images.unsplash.com/photo-1500673922987-e212871fec22?auto=format&fit=crop&w=1920&q=80",
-
-  foggy:
-    "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1920&q=80",
-
-  default:
-    "https://images.unsplash.com/photo-1499346030926-9a72daac6c63?auto=format&fit=crop&w=1920&q=80",
+  clear: ASSETS_BG,
+  cloudy: ASSETS_BG,
+  rainy: ASSETS_BG,
+  snowy: ASSETS_BG,
+  thunderstorm: ASSETS_BG,
+  foggy: ASSETS_BG,
+  default: ASSETS_BG,
 };
 
 export default function WeatherApp() {
@@ -153,6 +142,8 @@ export default function WeatherApp() {
     fetchWeather(location.lat, location.lon);
   }, [location]);
 
+  const computedBg = useMemo(() => getBackgroundImage(), [weather]);
+
   if (loading)
     return (
       <div className="flex h-screen items-center justify-center bg-blue-50">
@@ -167,12 +158,12 @@ export default function WeatherApp() {
     <div className="w-full min-h-screen relative flex flex-col overflow-hidden">
       <AnimatePresence mode="wait">
         <motion.img
-          key={getBackgroundImage()}
+          key={computedBg}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1 }}
-          src={getBackgroundImage()}
+          src={computedBg}
           alt="background"
           className="fixed inset-0 z-0 w-full h-full object-cover pointer-events-none"
         />
@@ -200,46 +191,87 @@ export default function WeatherApp() {
         getBackgroundImage={getBackgroundImage}
       />
       <WeatherAlerts alerts={alerts} setAlerts={setAlerts} />
-      <div className=" bg-gradient-to-b from-transparent to-white/60 dark:to-slate-900/60" />
 
       <main className="w-full flex-1 z-10">
-        <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-12 2xl:px-16 py-8 lg:py-12">
+        <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-12 2xl:px-16 py-0 lg:py-3">
+          <div className="max-w-screen-2xl mx-auto mb-6">
+            <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
+          </div>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 xl:gap-10 items-start">
             <div
-              className={`space-y-8 ${
+              className={`space-y-2 ${
                 activeTab === "today" ? "lg:col-span-8" : "lg:col-span-12"
               }`}
             >
-              <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
-
-              {activeTab === "today" && (
-                <>
-                  <TodayWeather
-                    weather={weather}
-                    location={location}
-                    getBackgroundImage={getBackgroundImage}
-                  />
-                  <Highlights today={weather.today} />
-                </>
-              )}
-
-              {activeTab === "hourly" && (
-                <HourlyForecast hourly={weather.hourly} />
-              )}
-
-              {activeTab === "weekly" && (
-                <WeeklyForecast
-                  weekly={weather.weekly}
-                  onDayClick={(item) => {
-                    setSelectedDay(item);
-                    setSelectedHours(weather.hourlyByDate?.[item.date] || null);
-                  }}
-                />
-              )}
-
-              {activeTab === "about" && <AboutPage />}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeTab}
+                  variants={
+                    activeTab === "today"
+                      ? {
+                          initial: { opacity: 0, y: 8, scale: 0.98 },
+                          animate: { opacity: 1, y: 0, scale: 1 },
+                          exit: { opacity: 0, y: -6, scale: 0.98 },
+                        }
+                      : activeTab === "hourly"
+                        ? {
+                            initial: { opacity: 0, x: 16 },
+                            animate: { opacity: 1, x: 0 },
+                            exit: { opacity: 0, x: -16 },
+                          }
+                        : activeTab === "weekly"
+                          ? {
+                              initial: {
+                                opacity: 0,
+                                y: 12,
+                                filter: "blur(2px)",
+                              },
+                              animate: {
+                                opacity: 1,
+                                y: 0,
+                                filter: "blur(0px)",
+                              },
+                              exit: { opacity: 0, y: 12, filter: "blur(2px)" },
+                            }
+                          : {
+                              initial: { opacity: 0, scale: 0.96 },
+                              animate: { opacity: 1, scale: 1 },
+                              exit: { opacity: 0, scale: 0.96 },
+                            }
+                  }
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  transition={{ duration: 0.28, ease: "easeOut" }}
+                >
+                  {activeTab === "today" && (
+                    <>
+                      <TodayWeather
+                        weather={weather}
+                        location={location}
+                        getBackgroundImage={getBackgroundImage}
+                      />
+                      <Highlights today={weather.today} />
+                    </>
+                  )}
+                  {activeTab === "hourly" && (
+                    <HourlyForecast hourly={weather.hourly} />
+                  )}
+                  {activeTab === "weekly" && (
+                    <WeeklyForecast
+                      weekly={weather.weekly}
+                      onDayClick={(item) => {
+                        setSelectedDay(item);
+                        setSelectedHours(
+                          weather.hourlyByDate?.[item.date] || null,
+                        );
+                      }}
+                    />
+                  )}
+                  {activeTab === "about" && <AboutPage />}
+                </motion.div>
+              </AnimatePresence>
             </div>
-
             {activeTab === "today" && (
               <div className="lg:col-span-4">
                 <MapCard location={location} weather={weather} />

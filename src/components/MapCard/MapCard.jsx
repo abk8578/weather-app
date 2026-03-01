@@ -6,7 +6,7 @@ export default function MapCard({ location, weather }) {
   };
 
   return (
-    <div className="lg:col-span-4 mt-14 lg:sticky lg:top-28 self-start">
+    <div className="lg:col-span-4 mt-0 lg:sticky lg:top-28 self-start">
       <div className="bg-white dark:bg-slate-800 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-xl relative">
         {/* Background image overlay */}
         <div
