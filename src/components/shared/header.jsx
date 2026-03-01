@@ -17,7 +17,8 @@ export default function Header({
   const searchRef = useRef(null);
 
   return (
-    <nav className="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-700 sticky top-0 z-[100] shadow-sm">
+    <nav className="bg-white/10 dark:bg-slate-900/10 backdrop-blur-xl sticky top-0 z-[100]">
+      {" "}
       <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-12 2xl:px-16 h-20 flex items-center justify-between">
         {/* LEFT: Logo + App Name + Alerts */}
         <div className="flex items-center gap-3">

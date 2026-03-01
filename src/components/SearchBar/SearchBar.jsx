@@ -15,7 +15,7 @@ const SearchBar = forwardRef(
   ) => {
     const [isOpen, setIsOpen] = useState(false);
     return (
-      <div className="relative max-w-md" ref={ref}>
+      <div className="relative w-80" ref={ref}>
         <input
           type="text"
           value={search}
