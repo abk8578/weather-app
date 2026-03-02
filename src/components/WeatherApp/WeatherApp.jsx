@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { BackGroundImage } from "../../_assets";
 import { decodeWeather } from "../../utils/weatherCodes";
 import AboutPage from "../aboutUs/aboutUs";
@@ -142,7 +142,7 @@ export default function WeatherApp() {
     fetchWeather(location.lat, location.lon);
   }, [location]);
 
-  const computedBg = useMemo(() => getBackgroundImage(), [weather]);
+  const computedBg = getBackgroundImage();
 
   if (loading)
     return (
@@ -268,7 +268,7 @@ export default function WeatherApp() {
                       }}
                     />
                   )}
-                  {activeTab === "about" && <AboutPage />}
+                  {activeTab === "about us" && <AboutPage />}
                 </motion.div>
               </AnimatePresence>
             </div>

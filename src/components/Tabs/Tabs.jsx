@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 
 export default function Tabs({ activeTab, setActiveTab }) {
-  const tabs = ["today", "hourly", "weekly", "about"];
+  const tabs = ["today", "hourly", "weekly", "about us"];
 
   return (
     <div className="w-full">
@@ -29,7 +29,11 @@ export default function Tabs({ activeTab, setActiveTab }) {
                   <motion.span
                     className="absolute top-0 left-[-40%] h-full w-1/3 bg-white/25 blur-md"
                     animate={{ x: ["-40%", "140%"] }}
-                    transition={{ duration: 1.6, repeat: Infinity, ease: "linear" }}
+                    transition={{
+                      duration: 1.6,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
                   />
                 </span>
               </>
